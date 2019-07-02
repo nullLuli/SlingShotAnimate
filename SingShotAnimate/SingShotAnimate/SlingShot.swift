@@ -37,18 +37,17 @@ class SlingShotController: UIViewController {
             if let begin = beginPoint {
                 changeLine(begin: begin, current: currentPoint)
             }
-//        case .ended:
-//            let currentPoint = gesture.location(in: view)
-//            if let begin = beginPoint {
-//                changeLine(begin: begin, current: currentPoint)
-//            }
+        case .ended:
+            slingShotView.leftContr = beginLeftContr
+            slingShotView.rightContr = beginRightContr
+            slingShotView.setNeedsDisplay()
         default:
             ()
         }
     }
     
     func changeLine(begin: CGPoint, current: CGPoint) {
-        let leftContrY = (current.y - begin.y) / 2 + beginY + yDeviation
+        let leftContrY = (current.y - begin.y) / 2 + beginY + yContrDevi(diffY: (current.y - begin.y))
         let leftContrX = UIScreen.main.bounds.width / 4
         
         let rightContrY = leftContrY
@@ -59,14 +58,23 @@ class SlingShotController: UIViewController {
         
         slingShotView.setNeedsDisplay()
     }
+    
+    func yContrDevi(diffY: CGFloat) -> CGFloat {
+        if diffY > 1 || diffY < -1 {
+            let result: CGFloat = (1 / diffY) * -1 + 2 * diffY / abs(diffY)
+            return result
+        }
+        return diffY
+    }
 }
 
 let beginY: CGFloat = 400
-let yDeviation: CGFloat = 50
+let beginLeftContr = CGPoint(x: UIScreen.main.bounds.width / 3, y: beginY)
+let beginRightContr = CGPoint(x: UIScreen.main.bounds.width * 2 / 3, y: beginY)
 
 class SlingShotView: UIView {
-    var leftContr: CGPoint = CGPoint(x: UIScreen.main.bounds.width / 3, y: beginY)
-    var rightContr: CGPoint = CGPoint(x: UIScreen.main.bounds.width * 2 / 3, y: beginY)
+    var leftContr: CGPoint = beginLeftContr
+    var rightContr: CGPoint = beginRightContr
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
