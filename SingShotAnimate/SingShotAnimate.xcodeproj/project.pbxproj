@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3C4E398722CB5A3A009F8438 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4E398622CB5A3A009F8438 /* AppDelegate.swift */; };
-		3C4E398922CB5A3A009F8438 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4E398822CB5A3A009F8438 /* ViewController.swift */; };
-		3C4E398C22CB5A3A009F8438 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E398A22CB5A3A009F8438 /* Main.storyboard */; };
 		3C4E398E22CB5A3C009F8438 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E398D22CB5A3C009F8438 /* Assets.xcassets */; };
 		3C4E399122CB5A3C009F8438 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E398F22CB5A3C009F8438 /* LaunchScreen.storyboard */; };
 		3C4E399922CB5A70009F8438 /* SlingShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4E399822CB5A70009F8438 /* SlingShot.swift */; };
@@ -18,8 +16,6 @@
 /* Begin PBXFileReference section */
 		3C4E398322CB5A3A009F8438 /* SingShotAnimate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SingShotAnimate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4E398622CB5A3A009F8438 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3C4E398822CB5A3A009F8438 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3C4E398B22CB5A3A009F8438 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3C4E398D22CB5A3C009F8438 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C4E399022CB5A3C009F8438 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C4E399222CB5A3C009F8438 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,8 +54,6 @@
 			children = (
 				3C4E399822CB5A70009F8438 /* SlingShot.swift */,
 				3C4E398622CB5A3A009F8438 /* AppDelegate.swift */,
-				3C4E398822CB5A3A009F8438 /* ViewController.swift */,
-				3C4E398A22CB5A3A009F8438 /* Main.storyboard */,
 				3C4E398D22CB5A3C009F8438 /* Assets.xcassets */,
 				3C4E398F22CB5A3C009F8438 /* LaunchScreen.storyboard */,
 				3C4E399222CB5A3C009F8438 /* Info.plist */,
@@ -127,7 +121,6 @@
 			files = (
 				3C4E399122CB5A3C009F8438 /* LaunchScreen.storyboard in Resources */,
 				3C4E398E22CB5A3C009F8438 /* Assets.xcassets in Resources */,
-				3C4E398C22CB5A3A009F8438 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,7 +132,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C4E399922CB5A70009F8438 /* SlingShot.swift in Sources */,
-				3C4E398922CB5A3A009F8438 /* ViewController.swift in Sources */,
 				3C4E398722CB5A3A009F8438 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,14 +139,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		3C4E398A22CB5A3A009F8438 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3C4E398B22CB5A3A009F8438 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3C4E398F22CB5A3C009F8438 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -286,6 +270,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W567PZ7SQ2;
 				INFOPLIST_FILE = SingShotAnimate/Info.plist;
@@ -295,6 +280,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "www.jianshu.com-u-d471dca73ae9.SingShotAnimate";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -304,6 +290,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W567PZ7SQ2;
 				INFOPLIST_FILE = SingShotAnimate/Info.plist;
@@ -313,6 +300,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "www.jianshu.com-u-d471dca73ae9.SingShotAnimate";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
