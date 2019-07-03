@@ -23,6 +23,7 @@ class SlingShotController: UIViewController {
         view.addSubview(slingShotView)
         slingShotView.frame = view.bounds
         slingShotView.backgroundColor = UIColor.white
+        slingShotView.updatePath(leftContr: beginLeftContr, rightContr: beginRightContr)
         
         let pan = UIPanGestureRecognizer(target: self, action: #selector(pan(gesture:)))
         view.addGestureRecognizer(pan)
@@ -38,9 +39,7 @@ class SlingShotController: UIViewController {
                 changeLine(begin: begin, current: currentPoint)
             }
         case .ended:
-            slingShotView.leftContr = beginLeftContr
-            slingShotView.rightContr = beginRightContr
-            slingShotView.setNeedsDisplay()
+            slingShotView.updatePath(leftContr: beginLeftContr, rightContr: beginRightContr)
         default:
             ()
         }
@@ -48,15 +47,12 @@ class SlingShotController: UIViewController {
     
     func changeLine(begin: CGPoint, current: CGPoint) {
         let leftContrY = (current.y - begin.y) / 2 + beginY + yContrDevi(diffY: (current.y - begin.y))
-        let leftContrX = UIScreen.main.bounds.width / 4
+        let leftContrX = UIScreen.main.bounds.width / 3
         
         let rightContrY = leftContrY
         let rightContrX = UIScreen.main.bounds.width - leftContrX
         
-        slingShotView.leftContr = CGPoint(x: leftContrX, y: leftContrY)
-        slingShotView.rightContr = CGPoint(x: rightContrX, y: rightContrY)
-        
-        slingShotView.setNeedsDisplay()
+        slingShotView.updatePath(leftContr: CGPoint(x: leftContrX, y: leftContrY), rightContr: CGPoint(x: rightContrX, y: rightContrY))
     }
     
     func yContrDevi(diffY: CGFloat) -> CGFloat {
@@ -73,28 +69,35 @@ let beginLeftContr = CGPoint(x: UIScreen.main.bounds.width / 3, y: beginY)
 let beginRightContr = CGPoint(x: UIScreen.main.bounds.width * 2 / 3, y: beginY)
 
 class SlingShotView: UIView {
-    var leftContr: CGPoint = beginLeftContr
-    var rightContr: CGPoint = beginRightContr
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
+    let shapeLayer: CAShapeLayer = CAShapeLayer()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
-        UIColor.black.setStroke()
+        layer.addSublayer(shapeLayer)
+        shapeLayer.frame = bounds
         
+        shapeLayer.strokeColor = UIColor.black.cgColor
+        shapeLayer.fillColor = UIColor.white.cgColor
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func updatePath(leftContr: CGPoint, rightContr: CGPoint) {
+        shapeLayer.path = getPath(leftContr: leftContr, rightContr: rightContr)
+    }
+    
+    private func getPath(leftContr: CGPoint, rightContr: CGPoint) -> CGPath {
         let beginPoint: CGPoint = CGPoint(x: 0, y: beginY)
         let endPoint: CGPoint = CGPoint(x: UIScreen.main.bounds.width, y: beginY)
-        
+
         let path = UIBezierPath.init()
         path.move(to: beginPoint)
         path.addCurve(to: endPoint, controlPoint1: leftContr, controlPoint2: rightContr)
         path.lineWidth = 2
-        
-        path.stroke()
-        
-        let leftContrPath = UIBezierPath(rect: CGRect(origin: leftContr, size: CGSize(width: 2, height: 2)))
-        leftContrPath.stroke()
-        
-        let rightContrPath = UIBezierPath(rect: CGRect(origin: rightContr, size: CGSize(width: 2, height: 2)))
-        rightContrPath.stroke()
+        return path.cgPath
     }
 }
