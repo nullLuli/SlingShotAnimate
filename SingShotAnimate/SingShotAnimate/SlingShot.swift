@@ -50,14 +50,15 @@ class SlingShotController: UIViewController {
     func animateSlingBack(end: CGPoint) {
         let path1 = getKeyPath(with: beginPoint, end: end, precent: 1)
         let path2 = getKeyPath(with: beginPoint, end: end, precent: 0.4)
-        let path3 = getKeyPath(with: beginPoint, end: end, precent: -0.2)
+        let path3 = getKeyPath(with: beginPoint, end: end, precent: -0.3)
         let path4 = getKeyPath(with: beginPoint, end: end, precent: 0.1)
         let path5 = getKeyPath(with: beginPoint, end: end, precent: 0)
         
         let animate = CAKeyframeAnimation(keyPath: "path")
         animate.values = [path1, path2, path3, path4, path5]
         animate.isRemovedOnCompletion = true
-        animate.duration = 1
+        animate.duration = 0.5
+        animate.keyTimes = [0.1, 0.3, 0.5, 0.75, 1]
         slingShotView.shapeLayer.add(animate, forKey: nil)
     }
     
@@ -85,7 +86,7 @@ class SlingShotController: UIViewController {
         let path = UIBezierPath.init()
         path.move(to: beginPoint)
         path.addCurve(to: endPoint, controlPoint1: leftContr, controlPoint2: rightContr)
-        path.lineWidth = 2
+        path.lineWidth = 0.3
         return path.cgPath
     }
 
